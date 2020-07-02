@@ -21,12 +21,6 @@ public class CarsController {
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
         List<CarMy> carMyList = carService.listCars();
-//        CarMy carMy1 = new CarMy("bmw",1,"111");
-//        CarMy carMy2 = new CarMy("mercedes",2,"222");
-//        CarMy carMy3 = new CarMy("porshe",3,"333");
-//        carService.add(carMy1);
-//        carService.add(carMy2);
-//        carService.add(carMy3);
 
         if (carMyList.equals(null) ){
             System.out.println(" nuuuuuuuuuuuuuuuuuuuuuuuuuuuulllllll");//todo пересмотреть
@@ -34,10 +28,6 @@ public class CarsController {
             carMyList = carService.listCars();
             model.addAttribute("carsList1", carMyList);
         }
-
-
-//        String carList = " fight now";
-//        model.addAttribute("carsList1", carList);
 
         return "cars";//возвращаемая jsp страница!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }

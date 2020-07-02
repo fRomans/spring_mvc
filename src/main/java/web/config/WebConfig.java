@@ -85,7 +85,7 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean("messageSource")
-    public MessageSource messageSource() {   ///newwwwwwwwwwwwwwwwwwwwww
+    public MessageSource messageSource() {   //источник локалей
         ReloadableResourceBundleMessageSource messageSource=new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("classpath:locale/messages");
         messageSource.setDefaultEncoding("UTF-8");
@@ -93,19 +93,25 @@ public class WebConfig implements WebMvcConfigurer {
         return messageSource;
     }
 
+
+    //использует атрибут локали в сеансе пользователя
     @Bean
     public LocaleResolver localeResolver() {
-        SessionLocaleResolver slr = new SessionLocaleResolver();///newwwwwwwwwwwwwwwwwwwwww
+        SessionLocaleResolver slr = new SessionLocaleResolver();
        // slr.setDefaultLocale(Locale.ENGLISH);
         return slr;
     }
+
+    //Перехватчик, который позволяет изменять текущую локаль при каждом запросе
     @Bean
-    public LocaleChangeInterceptor localeChangeInterceptor() {///newwwwwwwwwwwwwwwwwwwwww
+    public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
         lci.setParamName("locale");
         return lci;
     }
-    public void addInterceptors(InterceptorRegistry registry) {///newwwwwwwwwwwwwwwwwwwwww
+
+    //регистриратор перехватчика
+    public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
 
